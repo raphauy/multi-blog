@@ -39,6 +39,8 @@ export default async function middleware(req: NextRequest) {
   }`;
 
   // rewrites for app pages
+  console.log("hostname", hostname);
+  
   if (hostname == `app.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`) {
     const session = await getToken({ req });
     if (!session && path !== "/login") {

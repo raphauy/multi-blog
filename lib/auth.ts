@@ -11,6 +11,7 @@ export const authOptions: NextAuthOptions = {
     GitHubProvider({
       clientId: process.env.AUTH_GITHUB_ID as string,
       clientSecret: process.env.AUTH_GITHUB_SECRET as string,
+      accessTokenUrl: process.env.AUTH_GITHUB_ACCESS_TOKEN_URL as string,
       profile(profile) {
         return {
           id: profile.id.toString(),
@@ -42,10 +43,11 @@ export const authOptions: NextAuthOptions = {
         sameSite: "lax",
         path: "/",
         // When working on localhost, the cookie domain must be omitted entirely (https://stackoverflow.com/a/1188145)
-        domain: VERCEL_DEPLOYMENT
-          ? `.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`
-          : undefined,
-        secure: VERCEL_DEPLOYMENT,
+        domain: `.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`
+        // domain: VERCEL_DEPLOYMENT
+        //   ? `.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`
+        //   : undefined,
+        // secure: VERCEL_DEPLOYMENT,
       },
     },
   },
