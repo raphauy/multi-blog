@@ -5,8 +5,7 @@ import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import { Adapter } from "next-auth/adapters";
 import { accounts, sessions, users, verificationTokens } from "./schema";
 
-//const VERCEL_DEPLOYMENT = !!process.env.VERCEL_URL
-const VERCEL_DEPLOYMENT = !!process.env.NEXTAUTH_URL
+const VERCEL_DEPLOYMENT = !!process.env.VERCEL_URL
 export const authOptions: NextAuthOptions = {
   providers: [
     GitHubProvider({
