@@ -5,7 +5,7 @@ import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import { Adapter } from "next-auth/adapters";
 import { accounts, sessions, users, verificationTokens } from "./schema";
 
-const VERCEL_DEPLOYMENT = !!process.env.VERCEL_URL
+const VERCEL_DEPLOYMENT = !!process.env.VERCEL_URL;
 export const authOptions: NextAuthOptions = {
   providers: [
     GitHubProvider({
@@ -42,11 +42,10 @@ export const authOptions: NextAuthOptions = {
         sameSite: "lax",
         path: "/",
         // When working on localhost, the cookie domain must be omitted entirely (https://stackoverflow.com/a/1188145)
-        domain: `.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`
-        // domain: VERCEL_DEPLOYMENT
-        //   ? `.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`
-        //   : undefined,
-        // secure: VERCEL_DEPLOYMENT,
+        domain: VERCEL_DEPLOYMENT
+          ? `.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`
+          : undefined,
+        secure: VERCEL_DEPLOYMENT,
       },
     },
   },
